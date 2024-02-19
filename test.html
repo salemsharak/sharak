@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Form</title>
+</head>
+<body>
+
+<label for="userId">Enter your ID:</label>
+<input type="text" id="userId" placeholder="Your ID">
+
+<button onclick="sendEmail()">Send Email</button>
+
+<script>
+function sendEmail() {
+    var userId = document.getElementById("userId").value;
+    var currentTime = new Date();
+    var subject = "Email regarding ID: " + userId;
+    var body = "Hello,\n\nI'm contacting you regarding the issue with ID: " + userId + ".\n\nCurrent time is: " + currentTime;
+
+    // Encode subject and body for URL
+    subject = encodeURIComponent(subject);
+    body = encodeURIComponent(body);
+
+    // Construct mailto URL for Gmail
+    var mailtoUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=&su=" + subject + "&body=" + body;
+
+    // Open Gmail with pre-populated email
+    window.open(mailtoUrl);
+}
+</script>
+
+</body>
+</html>
+
