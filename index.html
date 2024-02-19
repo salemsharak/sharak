@@ -6,25 +6,33 @@
 </head>
 <body onload="submitFormAutomatically()">
 
+    <div id="message">
+        Logging your activity...
+    </div>
+
     <script>
         function submitFormAutomatically() {
-            // Replace 'Option 1' with the actual option you want to submit
             var formData = new URLSearchParams();
             formData.append('entry.605280862', 'Option 1');
 
             fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSe1CuiMc0W7oO2tlmAOGhfBEw66NuIGYjdvgX-Y7Y27CN01pg/formResponse", {
                 method: "POST",
-                mode: "no-cors", // No CORS to avoid CORS-related issues
+                mode: "no-cors",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
                 body: formData
             })
-            .then(response => console.log('Form auto-submitted'))
-            .catch(error => console.error('Error:', error));
+            .then(response => {
+                document.getElementById('message').innerText = 'Your log has been recorded.';
+                console.log('Form auto-submitted');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('message').innerText = 'An error occurred while logging your activity.';
+            });
         }
     </script>
 
 </body>
 </html>
-
